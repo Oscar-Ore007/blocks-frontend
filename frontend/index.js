@@ -46,6 +46,8 @@ const BASE_URL = 'http://localhost:3000'
         let username = document.getElementById("username").value
         let email = document.getElementById("email").value
 
+
+        console.log(name,username,email)
         let user = {
             name: name,
             username: username,
