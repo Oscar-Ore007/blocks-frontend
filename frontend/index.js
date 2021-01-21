@@ -47,14 +47,37 @@ const BASE_URL = 'http://localhost:3000'
         let email = document.getElementById("email").value
 
 
-        console.log(name,username,email)
+        
         let user = {
             name: name,
             username: username,
             email: email 
         }
+
+        fetch(`${BASE_URL}/users`, {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(resp => resp.json())
+        .then(user => {
+            let u = new User(user.id, user.name, user.username, user.email)
+            u.renderUser();
+        })
     }
 
     // delete - delete a user 
 
+function deleteUser(){
 
+    let userId = parseInt(event.target.dataset.id)
+
+    fetch(`${BASE_URL}/users/${userId}`, {
+        method: 'DELETE'
+    })
+
+    this.location.reload()
+}
