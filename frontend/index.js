@@ -10,10 +10,9 @@ const BASE_URL = 'http://localhost:3000'
             .then(resp => resp.json())
             .then(users => {
                 //we do something with the data fetched
-                for (const user of users){
-                    console.log("rails obj",user)
+                for (const user of users) {
                     let u = new User(user.id, user.name, user.username, user.email)
-                    console.log("js object",u)
+                    u.renderUser();
                 }
             })
         }
