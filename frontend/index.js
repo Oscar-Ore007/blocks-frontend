@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    createForm();
     fetchUsers()
 })  
 
@@ -17,6 +18,40 @@ const BASE_URL = 'http://localhost:3000'
             })
         }
     //create - create a new user 
+
+    // create a form, add an event listener 
+    // once a form is submitted => fetch `post` request to backend and 
+    // do something with returned objects 
+
+    function createForm(){
+        let usersForm = document.getElementById("users-form")
+
+        usersForm.innerHTML +=
+        ` 
+        <form>
+            Name: <input type="text" id="name"><br>
+            Username: <input type="text" id="username"><br>
+            Email: <input type="text" id="email"><br>
+            <input type="submit" value="Create User">
+
+        </form>
+        `
+
+        usersForm.addEventListener("submit", userFormSubmission)
+    }
+
+    function userFormSubmission(){
+        event.preventDefault();
+        let name = document.getElementById("name").value 
+        let username = document.getElementById("username").value
+        let email = document.getElementById("email").value
+
+        let user = {
+            name: name,
+            username: username,
+            email: email 
+        }
+    }
 
     // delete - delete a user 
 
